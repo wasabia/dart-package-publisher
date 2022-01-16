@@ -57,6 +57,7 @@ get_local_package_version() {
     echo "No package found. :("
     exit 0
   fi
+  echo "Package : $PACKAGE"
   echo "::set-output name=dartVersion::$DART_VERSION"
   if [ "$FLUTTER_VERSION" != "" ]; then
     echo "::set-output name=flutterVersion::$FLUTTER_VERSION"
