@@ -31,7 +31,14 @@ switch_working_directory() {
 }
 
 detect_flutter_package() {
-  GET_OUTPUT=`pub get`
+  echo "run detect_flutter_package"
+  
+  if [ "$INPUT_FLUTTER" = "true" ]; then
+    GET_OUTPUT=`flutter pub get`
+  else 
+    GET_OUTPUT=`pub get`
+  fi
+  
   if [ "$?" = 69 ]; then
     INPUT_FLUTTER="true"
     echo "Flutter package detected"
