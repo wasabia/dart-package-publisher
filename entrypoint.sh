@@ -46,15 +46,20 @@ detect_flutter_package() {
 }
 
 get_local_package_version() {
+  echo "run get_local_package_version"
+  echo "INPUT_FLUTTER: $INPUT_FLUTTER"
+  
   if [ "$INPUT_FLUTTER" = "true" ]; then
+    echo "run get_local_package_version INPUT_FLUTTER true"
     GET_OUTPUT=`flutter pub get`
     DEPS_OUTPUT=`flutter pub deps`
   else
+    echo "run get_local_package_version INPUT_FLUTTER false"
     GET_OUTPUT=`pub get`
     DEPS_OUTPUT=`pub deps`
   fi
   PACKAGE_INFO=`echo "$DEPS_OUTPUT" | cut -d'|' -f1 | cut -d"'" -f1 | head -n 3`
-  echo "$PACKAGE_INFO"
+  echo "PACKAGE_INFO: $PACKAGE_INFO"
   DART_VERSION=`echo "$PACKAGE_INFO" | perl -n -e'/^Dart SDK (.*)$/ && print $1'`
   FLUTTER_VERSION=`echo "$PACKAGE_INFO" | perl -n -e'/^Flutter SDK (.*)$/ && print $1'`
   PACKAGE_INFO=`echo "$PACKAGE_INFO" | tail -1`
