@@ -58,6 +58,7 @@ get_local_package_version() {
     GET_OUTPUT=`pub get`
     DEPS_OUTPUT=`pub deps`
   fi
+  echo "DEPS_OUTPUT: $DEPS_OUTPUT"
   PACKAGE_INFO=`echo "$DEPS_OUTPUT" | cut -d'|' -f1 | cut -d"'" -f1 | head -n 3`
   echo "PACKAGE_INFO: $PACKAGE_INFO"
   DART_VERSION=`echo "$PACKAGE_INFO" | perl -n -e'/^Dart SDK (.*)$/ && print $1'`
